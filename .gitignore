@@ -1,0 +1,10 @@
+# cloud9
+.c9*
+.settings
+
+# nodejs and bower
+node_modules
+bower_components
+
+# general tmp files
+*~
