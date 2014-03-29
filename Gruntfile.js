@@ -1,12 +1,28 @@
-var jsSrcFiles = [
-  'server/contentSrc/js/thirdParty/bootstrap.min.js'
-]
+var commonJsSrcFiles = [
+  'server/contentSrc/js/thirdParty/jquery.min.js',
+  'server/contentSrc/js/thirdParty/bootstrap.min.js',
+  'server/contentSrc/js/thirdParty/angular.min.js',
+];
+
+var controllerJsSrcFiles = [
+  'server/contentSrc/js/controller/main.js',
+];
+
+var displayJsSrcFiles = [
+  'server/contentSrc/js/display/main.js',
+];
+
+var jsTargetFiles = {
+  'server/content/js/common.js': commonJsSrcFiles,
+  'server/content/js/controller.js': controllerJsSrcFiles,
+  'server/content/js/display.js': displayJsSrcFiles,
+}
 
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         less: {
-            development: {
+            default: {
                 options: {
                     compess: true,
                     cleancss: true
@@ -17,24 +33,20 @@ module.exports = function (grunt) {
             }
         },
         uglify: {
-            production: {
+            default: {
                 compress: true,
-                files: {
-                  'server/content/js/app.js': jsSrcFiles
-                }
+                files: jsTargetFiles
             }
         },
         concat: {
-            dist: {
-                src: jsSrcFiles,
-                dest: 'server/content/js/app.js'
+            default: {
+              files: jsTargetFiles
             }
         },
         watch: {
-            styles: {
+            default: {
                 files: [
-                    'server/contentSrc/less/*.less',
-                    'server/contentSrc/js/*.js'
+                    'server/contentSrc/**'
                 ],
                 tasks: ['less', 'concat'],
             }
