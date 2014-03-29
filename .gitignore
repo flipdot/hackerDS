@@ -8,3 +8,6 @@ bower_components
 
 # general tmp files
 *~
+
+# compiled files
+server/content
