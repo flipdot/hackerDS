@@ -5,11 +5,11 @@ var commonJsSrcFiles = [
 ];
 
 var controllerJsSrcFiles = [
-  'server/contentSrc/js/controller/main.js',
+  'server/contentSrc/js/controller/controllers.js',
 ];
 
 var displayJsSrcFiles = [
-  'server/contentSrc/js/display/main.js',
+  'server/contentSrc/js/display/controllers.js',
 ];
 
 var jsTargetFiles = {
