@@ -9,15 +9,16 @@ appsManager.loadApps().then(function () {
   app.use("/display", express.static(__dirname+"/../client/dest/display"));
   app.use("/shared", express.static(__dirname+"/../client/dest/shared"));
   
+  // set up app routes
   appsManager.apps.map(function (dsApp) {
-    
     app.get("/apps/"+dsApp.name+"/icon", function (req, res) {
       res.sendfile("icon.png", {root: __dirname+"/../apps/"+dsApp.name});
     });
     
     app.use(
       "/apps/"+app.name,
-      express.static(__dirname+"/../apps/"+app.name));
+      express.static(__dirname+"/../apps/"+app.name
+    ));
   });
   
   app.get("/apps", function(req, res){

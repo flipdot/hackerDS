@@ -1,0 +1,11 @@
+core.controller.send()  --> sends a message to the core controller page
+core.display.send()     --> sends a message to the core display page
+core.send()             --> sends a message to the core server
+
+apps.HelloWorldApp.send()            --> sends a message to the HelloWorldApps server
+apps.HelloWorldApp.controller.send() --> sends a message to the controller of the HelloWorldApp
+apps.HelloWorldApp.display.send()    --> sends a message to the display of the HelloWorldApp
+
+app.send()            --> sends a message to the current apps server
+app.controller.send() --> sends a message to the current apps controller
+app.display.send()    --> sends a message to the current apps display
