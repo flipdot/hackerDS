@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var httpServer = require('http').createServer(app);
-var engine = require('engine.io');
+var socketIo = require('socket.io');
 
 var appsManager = require(__dirname+"/appManager.js").create(__dirname+"/../apps");
 var coreServer = require(__dirname+"/coreServer.js");
@@ -44,6 +44,8 @@ appsManager.loadApps().then(function () {
   });
 
   httpServer.listen(3000);
-  var engineServer = engine.attach(httpServer);
-  coreServer.create(engineServer);
+  var socketServer = socketIo.listen(httpServer);
+  socketServer.set('log level', 0);
+  
+  coreServer.create(socketServer);
 });

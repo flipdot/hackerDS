@@ -2,32 +2,23 @@
   function HackerDS(){
     var self = this;
     
-    var notifyReady;
-    var socket = new eio.Socket();
-    socket.on('open', function () {
-      socket.on('message', onMessage);
-      
-      if(notifyReady) notifyReady();
-    });
+    var socket = new io.connect();
     
     var onMessageCallback;
-    function onMessage(msg){
+    socket.on('message', function (msg) {
       if(onMessageCallback) onMessageCallback(msg);
-    }
-    
+    });
+
     function sendToClient(appname, typ, data){
-      var req = {
-        method: "clientMessage",
-        data: {
-          appname: appname,
-          typ: typ,
-          data: data
-        }
+      var data ={
+        appname: appname,
+        typ: typ,
+        data: data
       };
-      socket.send(JSON.stringify(req));
+      socket.emit("clientMessage", data);
     }
     
-    self.register = function (readyCallback) {
+    self.register = function () {
       var client = {};
       var pathname = window.location.pathname;
       
@@ -56,14 +47,7 @@
         client.name = appname;
       }
       
-      socket.send(JSON.stringify({
-        method: "registerClient",
-        data: {
-          client: client
-        }
-      }));
-
-      notifyReady = readyCallback;
+      socket.emit("registerClient", { client: client });
     };
     
     self.onMessage = function (onMsgCallback) {

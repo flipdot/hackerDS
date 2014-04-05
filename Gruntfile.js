@@ -13,7 +13,7 @@ var displayJsSrcFiles = [
 ];
 
 var appsLibs = [
-  'apps/HackerDSCore/clientSrc/shared/js/engine.io.js',
+  'apps/HackerDSCore/clientSrc/shared/js/socket.io.js',
   'apps/HackerDSCore/clientSrc/hackerDS/js/hackerDS.js'
 ];
 
