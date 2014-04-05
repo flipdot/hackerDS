@@ -4,18 +4,24 @@
     
     var socket = new io.connect();
     
-    var onMessageCallback;
+    var messageCallbacks = {};
     socket.on('message', function (msg) {
-      if(onMessageCallback) onMessageCallback(msg);
+      var handler = messageCallbacks[msg.name];
+      if(handler){
+        handler(msg.data);
+      }
     });
 
-    function sendToClient(appname, typ, data){
-      var data ={
+    function sendToClient(appname, typ, name, data){
+      var req = {
         appname: appname,
         typ: typ,
-        data: data
+        msg: {
+          name: name,
+          data: data
+        }
       };
-      socket.emit("clientMessage", data);
+      socket.emit("clientMessage", req);
     }
     
     self.register = function () {
@@ -28,17 +34,17 @@
 
         self.app = {
           controller: {
-            send: function(data) { 
-              sendToClient(appname, "controller", data);
+            send: function(name, data) { 
+              sendToClient(appname, "controller", name, data);
             } 
           },
           display: { 
-            send: function (data) { 
-              sendToClient(appname, "display", data); 
+            send: function (name, data) { 
+              sendToClient(appname, "display", name, data); 
             } 
           },
-          send: function (data) { 
-            sendToClient(appname, "server", data);
+          send: function (name, data) { 
+            sendToClient(appname, "server", name, data);
           }
         };
        
@@ -50,8 +56,8 @@
       socket.emit("registerClient", { client: client });
     };
     
-    self.onMessage = function (onMsgCallback) {
-      onMessageCallback = onMsgCallback;
+    self.on = function (name, callback) {
+      messageCallbacks[name] = callback;
     };
   }
   

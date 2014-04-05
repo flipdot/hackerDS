@@ -1,5 +1,5 @@
 hackerDS.register();
 
-hackerDS.onMessage(function (msg) {
-  alert("msg");
+hackerDS.on("msg", function (msg) {
+  alert(msg);
 })

@@ -1,5 +1,6 @@
 hackerDS.register();
 
 function sendToDisplay(){
-  hackerDS.app.display.send(document.getElementById("msg").value);
+  var text = document.getElementById("msg").value;
+  hackerDS.app.display.send("msg", text);
 }

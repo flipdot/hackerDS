@@ -12,7 +12,7 @@ function CoreServer(socketServer){
     
     socket.on('clientMessage', function (data) {
       var room = data.appname+"."+data.typ;
-      socket.broadcast.to(room).emit("message", data.data);
+      socket.broadcast.to(room).emit("message", data.msg);
     });
   });
 }
