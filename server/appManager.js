@@ -3,17 +3,26 @@ var path = require("path");
 var Q = require("q");
 
 function AppManager(appsFolder){
-  var self = this;
+  var mySelf = this;
   
-  self.apps = [];
+  mySelf.apps = [];
   
-  self.loadApps = function () {
+  mySelf.loadApps = function () {
     return fsLib.readDirs(appsFolder).then(function(dirs){
       dirs.map(function(dir){
-        self.apps.push(new App(dir));
+        mySelf.apps.push(new App(dir));
       });
     });
   }
+  
+  mySelf.getApp = function(name){
+    for(var i in mySelf.apps){
+      var app = mySelf.apps[i];
+      if(app.name === name){
+        return app;
+      }
+    }
+  };
 };
 
 function App(folder){
@@ -24,8 +33,10 @@ function App(folder){
   
   var serverJs = path.join(self.folder, "/server/server.js");
   try {
-  self.server = require(serverJs);
-  if(self.server.init) self.server.init();
+    var serverClass = require(serverJs);
+    self.server = new serverClass();
+    
+    if(self.server.init) self.server.init();
   } catch(err){
     console.log(err);
   }

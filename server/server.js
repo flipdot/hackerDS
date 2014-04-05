@@ -47,5 +47,5 @@ appsManager.loadApps().then(function () {
   var socketServer = socketIo.listen(httpServer);
   socketServer.set('log level', 0);
   
-  coreServer.create(socketServer);
+  coreServer.create(socketServer, appsManager);
 });
