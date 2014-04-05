@@ -1,6 +1,6 @@
 function ControllerCtrl($scope, $http) {
   $http({
-    url: "/core/apps",
+    url: "/apps",
     method: "GET"
   })
   .error(console.log)

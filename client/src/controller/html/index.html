@@ -1,7 +1,7 @@
 <html ng-app>
     <head>
         <title>hackerDS Controller</title>
-        <link href="/content/css/style.css" type="text/css" rel="stylesheet" />
+        <link href="/shared/css/style.css" type="text/css" rel="stylesheet" />
     </head>
     <body ng-controller="ControllerCtrl">
         <div class="container">
@@ -9,14 +9,14 @@
             <div class="row">
               <div class="col-md-1" ng-repeat="app in apps">
                 <div>
-                  <img ng-src="/modules/{{app.name}}/icon.png" />
+                  <img ng-src="/apps/{{app.name}}/icon" />
                   <span>{{app.name}}</span>
                 </div>
               </div>
             </div>
         </div>
         
-        <script type="text/javascript" src="/content/js/common.js"></script>
-        <script type="text/javascript" src="/content/js/controller.js"></script>
+        <script type="text/javascript" src="/shared/js/common.js"></script>
+        <script type="text/javascript" src="/controller/js/app.js"></script>
     </body>
 </html>

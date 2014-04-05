@@ -1,36 +1,48 @@
 var commonJsSrcFiles = [
-  'server/contentSrc/js/thirdParty/jquery.min.js',
-  'server/contentSrc/js/thirdParty/bootstrap.min.js',
-  'server/contentSrc/js/thirdParty/angular.min.js',
+  'client/src/shared/js/jquery.min.js',
+  'client/src/shared/js/bootstrap.min.js',
+  'client/src/shared/js/angular.min.js',
 ];
 
 var controllerJsSrcFiles = [
-  'server/contentSrc/js/controller/controllers.js',
+  'client/src/controller/js/controllers.js',
 ];
 
 var displayJsSrcFiles = [
-  'server/contentSrc/js/display/controllers.js',
+  'client/src/display/js/controllers.js',
 ];
 
 var jsTargetFiles = {
-  'server/content/js/common.js': commonJsSrcFiles,
-  'server/content/js/controller.js': controllerJsSrcFiles,
-  'server/content/js/display.js': displayJsSrcFiles,
+  'client/dest/shared/js/common.js': commonJsSrcFiles,
+  'client/dest/controller/js/app.js': controllerJsSrcFiles,
+  'client/dest/display/js/app.js': displayJsSrcFiles,
 }
+
+var buildTasks = ['less', 'concat', 'copy'];
 
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        copy: {
+          default: {
+            files: [
+              { src: ["client/src/controller/html/index.html"], dest: "client/dest/controller/index.html" },
+              { src: ["client/src/display/html/index.html"], dest: "client/dest/display/index.html" },
+            ]
+          }
+        },
         less: {
-            default: {
-                options: {
-                    compess: true,
-                    cleancss: true
-                },
-                files: {
-                    'server/content/css/style.css': 'server/contentSrc/less/style.less'
-                }
-            }
+          default: {
+              options: {
+                compess: true,
+                cleancss: true
+              },
+              files: {
+                'client/dest/controller/css/style.css': 'client/src/controller/less/style.less',
+                'client/dest/display/css/style.css': 'client/src/display/less/style.less',
+                'client/dest/shared/css/style.css': 'client/src/shared/less/style.less'
+              }
+          }
         },
         uglify: {
             default: {
@@ -46,9 +58,9 @@ module.exports = function (grunt) {
         watch: {
             default: {
                 files: [
-                    'server/contentSrc/**'
+                    'client/src/**'
                 ],
-                tasks: ['less', 'concat'],
+                tasks: buildTasks,
             }
         }
     });
@@ -57,7 +69,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     
-    grunt.registerTask('default', ['watch'])
-    grunt.registerTask('release', ['less', 'uglify'])
+    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('build', buildTasks);
+    grunt.registerTask('release', ['less', 'uglify']);
 };
