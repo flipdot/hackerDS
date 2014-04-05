@@ -1,27 +1,27 @@
 var commonJsSrcFiles = [
-  'client/src/shared/js/jquery.min.js',
-  'client/src/shared/js/bootstrap.min.js',
-  'client/src/shared/js/angular.min.js'
+  'apps/HackerDSCore/clientSrc/shared/js/jquery.min.js',
+  'apps/HackerDSCore/clientSrc/shared/js/bootstrap.min.js',
+  'apps/HackerDSCore/clientSrc/shared/js/angular.min.js'
 ];
 
 var controllerJsSrcFiles = [
-  'client/src/controller/js/controllers.js',
+  'apps/HackerDSCore/clientSrc/controller/js/controllers.js',
 ];
 
 var displayJsSrcFiles = [
-  'client/src/display/js/controllers.js',
+  'apps/HackerDSCore/clientSrc/display/js/controllers.js',
 ];
 
 var appsLibs = [
-  'client/src/shared/js/engine.io.js',
-  'client/src/hackerDS/js/messagePipeline.js'
+  'apps/HackerDSCore/clientSrc/shared/js/engine.io.js',
+  'apps/HackerDSCore/clientSrc/hackerDS/js/hackerDS.js'
 ];
 
 var jsTargetFiles = {
-  'client/dest/shared/js/common.js': commonJsSrcFiles,
-  'client/dest/controller/js/app.js': controllerJsSrcFiles,
-  'client/dest/display/js/app.js': displayJsSrcFiles,
-  'client/dest/hackerDS/js/hackerDS.js': appsLibs
+  'apps/HackerDSCore/client/shared/js/common.js': commonJsSrcFiles,
+  'apps/HackerDSCore/client/controller/js/app.js': controllerJsSrcFiles,
+  'apps/HackerDSCore/client/display/js/app.js': displayJsSrcFiles,
+  'apps/HackerDSCore/client/hackerDS/js/hackerDS.js': appsLibs
 }
 
 var buildTasks = ['less', 'concat', 'copy'];
@@ -32,8 +32,8 @@ module.exports = function (grunt) {
         copy: {
           default: {
             files: [
-              { src: ["client/src/controller/html/index.html"], dest: "client/dest/controller/index.html" },
-              { src: ["client/src/display/html/index.html"], dest: "client/dest/display/index.html" },
+              { src: ["apps/HackerDSCore/clientSrc/controller/html/index.html"], dest: "apps/HackerDSCore/client/controller/index.html" },
+              { src: ["apps/HackerDSCore/clientSrc/display/html/index.html"], dest: "apps/HackerDSCore/client/display/index.html" },
             ]
           }
         },
@@ -44,9 +44,9 @@ module.exports = function (grunt) {
                 cleancss: true
               },
               files: {
-                'client/dest/controller/css/style.css': 'client/src/controller/less/style.less',
-                'client/dest/display/css/style.css': 'client/src/display/less/style.less',
-                'client/dest/shared/css/style.css': 'client/src/shared/less/style.less'
+                'apps/HackerDSCore/client/controller/css/style.css': 'apps/HackerDSCore/clientSrc/controller/less/style.less',
+                'apps/HackerDSCore/client/display/css/style.css': 'apps/HackerDSCore/clientSrc/display/less/style.less',
+                'apps/HackerDSCore/client/shared/css/style.css': 'apps/HackerDSCore/clientSrc/shared/less/style.less'
               }
           }
         },
@@ -64,7 +64,7 @@ module.exports = function (grunt) {
         watch: {
             default: {
                 files: [
-                    'client/src/**'
+                    'apps/HackerDSCore/clientSrc/**'
                 ],
                 tasks: buildTasks,
             }

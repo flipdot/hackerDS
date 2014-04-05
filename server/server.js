@@ -8,10 +8,16 @@ var coreServer = require(__dirname+"/coreServer.js");
 
 appsManager.loadApps().then(function () {
 
-  app.use("/controller", express.static(__dirname+"/../client/dest/controller"));
-  app.use("/display", express.static(__dirname+"/../client/dest/display"));
-  app.use("/shared", express.static(__dirname+"/../client/dest/shared"));
-  app.use("/hackerDS", express.static(__dirname+"/../client/dest/hackerDS"));
+  function redirectToApp(path){
+    app.get("/"+path, function (req, res) {
+      res.redirect("/apps/HackerDSCore/"+path);
+    });
+  }
+
+  app.use("/hackerDS", express.static(__dirname+"/../apps/HackerDSCore/client/hackerDS"));
+  
+  redirectToApp("controller");
+  redirectToApp("display");
   
   // set up app routes
   appsManager.apps.map(function (dsApp) {
@@ -20,13 +26,19 @@ appsManager.loadApps().then(function () {
     });
     
     app.use(
-      "/apps/"+app.name,
-      express.static(__dirname+"/../apps/"+app.name
-    ));
+      "/apps/"+dsApp.name,
+      express.static(__dirname+"/../apps/"+dsApp.name+"/client")
+    );
+    
+    app.use(
+      "/apps/"+dsApp.name+"/shared",
+      express.static(__dirname+"/../apps/"+dsApp.name+"/client/shared")
+    );
   });
   
   app.get("/apps", function(req, res){
     var apps = appsManager.apps
+      .filter(function(app){return app.name !== "HackerDSCore";})
       .map(function (app) { return {name: app.name}; });
     res.send(apps);
   });

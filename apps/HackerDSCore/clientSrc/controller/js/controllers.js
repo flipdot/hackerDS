@@ -8,7 +8,8 @@ function ControllerCtrl($scope, $http) {
     $scope.apps = res;
   });
   
-  
+  hackerDS.register(function () {
+  });
 }
 
 ControllerCtrl.$inject = ["$scope", "$http"];

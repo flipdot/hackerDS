@@ -23,8 +23,12 @@ function App(folder){
   self.name = path.basename(self.folder);
   
   var serverJs = path.join(self.folder, "/server/server.js");
+  try {
   self.server = require(serverJs);
   if(self.server.init) self.server.init();
+  } catch(err){
+    console.log(err);
+  }
 }
 
 module.exports = {
