@@ -11,50 +11,42 @@
         handler(msg.data);
       }
     });
+    
+    socket.on('reconnect', function () {
+      registerClient();
+    });
 
-    function sendToClient(appname, typ, name, data){
+    // typ is either "controller" or "display"
+    function sendMessageToApp(appname, typ, messageName, messageData){
       var req = {
         appname: appname,
         typ: typ,
         msg: {
-          name: name,
-          data: data
+          name: messageName,
+          data: messageData
         }
       };
       socket.emit("clientMessage", req);
     }
     
-    self.register = function () {
-      var client = {};
-      var pathname = window.location.pathname;
-      
-      var appNameResult = pathname.match(/\/apps\/(\w{1,})\/(\w{1,})/);
-      if(appNameResult){
-        var appname = appNameResult[1];
+    var client = {};
+    var pathname = window.location.pathname;
+    var appNameResult = pathname.match(/\/apps\/(\w{1,})\/(\w{1,})/);
+    if(appNameResult){
+      client.name = appNameResult[1];
+      client.typ = appNameResult[2];
 
-        self.app = {
-          controller: {
-            send: function(name, data) { 
-              sendToClient(appname, "controller", name, data);
-            } 
-          },
-          display: { 
-            send: function (name, data) { 
-              sendToClient(appname, "display", name, data); 
-            } 
-          },
-          send: function (name, data) { 
-            sendToClient(appname, "server", name, data);
-          }
-        };
-       
-        var appControllerOrDisplay = appNameResult[2];
-        client.typ = appControllerOrDisplay;
-        client.name = appname;
-      }
-      
+      self.app = {
+        controller: { send: function(name, data) { sendMessageToApp(client.name, "controller", name, data); } },
+        display: { send: function (name, data) { sendMessageToApp(client.name, "display", name, data);} },
+        send: function (name, data) { sendMessageToApp(client.name, "server", name, data); }
+      };
+    }
+    
+    function registerClient(){
       socket.emit("registerClient", { client: client });
-    };
+    }
+    registerClient();
     
     self.on = function (name, callback) {
       messageCallbacks[name] = callback;
