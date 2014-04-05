@@ -7,6 +7,8 @@ function ControllerCtrl($scope, $http) {
   .success(function(res){
     $scope.apps = res;
   });
+  
+  
 }
 
 ControllerCtrl.$inject = ["$scope", "$http"];

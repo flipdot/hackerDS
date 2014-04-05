@@ -1,7 +1,7 @@
 var commonJsSrcFiles = [
   'client/src/shared/js/jquery.min.js',
   'client/src/shared/js/bootstrap.min.js',
-  'client/src/shared/js/angular.min.js',
+  'client/src/shared/js/angular.min.js'
 ];
 
 var controllerJsSrcFiles = [
@@ -12,10 +12,16 @@ var displayJsSrcFiles = [
   'client/src/display/js/controllers.js',
 ];
 
+var appsLibs = [
+  'client/src/shared/js/engine.io.js',
+  'client/src/hackerDS/js/messagePipeline.js'
+];
+
 var jsTargetFiles = {
   'client/dest/shared/js/common.js': commonJsSrcFiles,
   'client/dest/controller/js/app.js': controllerJsSrcFiles,
   'client/dest/display/js/app.js': displayJsSrcFiles,
+  'client/dest/hackerDS/js/hackerDS.js': appsLibs
 }
 
 var buildTasks = ['less', 'concat', 'copy'];
