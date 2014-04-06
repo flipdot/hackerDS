@@ -33,7 +33,6 @@ Contains the public files for the large display
 **`/server/server.js`**  
 This file contains the server code for your app. This file has to export a constructor, an instance will be created by the hackerDS system.
 If you implement an `init` function it will be called after the app-server has been loaded.
-If you implement an `methods` object, you can call its functions from the hackerDS client library.
 
 **Example file:**
 
