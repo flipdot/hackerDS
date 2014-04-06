@@ -13,7 +13,6 @@ controllerControllers.controller('AppListController', ['$scope', '$http', '$loca
     
     $scope.switchToApp = function (app) {
       $location.path('/apps/'+app.name);
-      hackerDS.display.send('switchApp', app.name);
       return false;
     };
     
@@ -32,5 +31,7 @@ controllerControllers.controller('AppControlPanelController',
       $location.path('/');
       return false;
     };
+    
+    hackerDS.display.send('switchApp', appname);
   }
 ]);
