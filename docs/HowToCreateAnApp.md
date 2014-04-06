@@ -18,11 +18,11 @@ Every app must have the following structure to be loaded into the hackerDS syste
         |- server.js
       |- icon.png
 
+**`/icon.png`**  
+The icon for the app at size 150px x 150px in PNG format
+
 **`/client`**  
 The content of this folder is published at `/apps/{YourAppName}`, for example the content of a folder `shared` is available at `/apps/{YourAppName}/shared`.
-
-**`/client/icon.png`**  
-The icon for the app at size 150px x 150px in PNG format
 
 **`/client/controller`**  
 Contains the public files for the touchscreen controller
