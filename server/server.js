@@ -14,7 +14,9 @@ appsManager.loadApps().then(function () {
     });
   }
 
-  app.use("/hackerDS", express.static(__dirname+"/../apps/HackerDSCore/client/hackerDS"));
+  app.get("/hackerDS/js", function (req, res) {
+    res.sendfile("hackerDS.js", {root: __dirname+"/../apps/HackerDSCore/client/hackerDS/js"});
+  });
   
   redirectToApp("controller");
   redirectToApp("display");
