@@ -39,6 +39,7 @@ module.exports = function (grunt) {
               { src: ["apps/HackerDSCore/clientSrc/controller/html/appControlPanel.html"], dest: "apps/HackerDSCore/client/controller/appControlPanel.html" },
               
               { src: ["apps/HackerDSCore/clientSrc/display/html/index.html"], dest: "apps/HackerDSCore/client/display/index.html" },
+              { src: ["apps/HackerDSCore/clientSrc/display/html/home.html"], dest: "apps/HackerDSCore/client/display/home.html" },
             ]
           }
         },

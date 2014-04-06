@@ -16,13 +16,21 @@ controllerControllers.controller('AppListController', ['$scope', '$http', '$loca
       hackerDS.display.send('switchApp', app.name);
       return false;
     };
+    
+    hackerDS.display.send("switchToHome");
   }
 ]);
 
-controllerControllers.controller('AppControlPanelController', ['$scope', '$sce', '$routeParams',
-  function ($scope, $sce, $routeParams) {
+controllerControllers.controller('AppControlPanelController',
+  ['$scope', '$sce', '$routeParams', '$location',
+  function ($scope, $sce, $routeParams, $location) {
     var appname = $routeParams.appname;
     var newUrl = "/apps/"+appname+"/controller";
     $scope.frameUrl = $sce.trustAsResourceUrl(newUrl);
+    
+    $scope.backToAppList = function () {
+      $location.path('/');
+      return false;
+    };
   }
 ]);

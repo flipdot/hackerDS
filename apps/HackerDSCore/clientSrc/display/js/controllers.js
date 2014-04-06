@@ -6,6 +6,18 @@ function DisplayCtrl($scope, $http, $sce) {
       $scope.frameUrl = $sce.trustAsResourceUrl(newUrl);
     });
   });
+  
+  function switchToHome(){
+    $scope.frameUrl = $sce.trustAsResourceUrl("/apps/HackerDSCore/display/home.html");
+  }
+  
+  hackerDS.on('switchToHome', function () {
+    $scope.$apply(function () {
+      switchToHome();
+    });
+  });
+  
+  switchToHome();
 }
 
 DisplayCtrl.$inject = ["$scope", "$http", "$sce"];
