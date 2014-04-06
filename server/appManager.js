@@ -52,6 +52,11 @@ function App(folder, serverToClient){
   
   self.display = { send: function(name, data) { sendServerToClient("display", name, data) } };
   self.controller = { send: function(name, data) { sendServerToClient("controller", name, data) } };
+  self.methods = {};
+
+  self.on = function (eventName, handler) {
+    self.methods[eventName] = handler;
+  };
   
   var serverJs = path.join(self.folder, "/server/server.js");
   try {

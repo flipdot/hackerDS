@@ -19,7 +19,7 @@ Every app must have the following structure to be loaded into the hackerDS syste
       |- icon.png
 
 **`/icon.png`**  
-The icon for the app at size 150x150px in PNG format
+The icon for the app at size 150px x 150px in PNG format
 
 **`/client`**  
 The content of this folder is published at `/apps/{YourAppName}`, for example the content of a folder `shared` is available at `/apps/{YourAppName}/shared`.
@@ -44,12 +44,10 @@ If you implement an `methods` object, you can call its functions from the hacker
         console.log("init my module");
       };
 
-      mySelf.methods = {
-        "serverMsg": function (msg) {
-          // simply log the message to the console
-          console.log(msg);
-        }
-      };
+      hackerDS.on('serverMsg', function(msg){
+        // simply log the message to the console
+        console.log(msg);
+      })
     };
 
 hackerDS client library
@@ -78,6 +76,8 @@ hackerDS server library
 
 As you have seen in the server.js example file, your server gets an `hackerDS` object passed in the constructor which exposes a simmlar api:
 
-- `hackerDS.{target}.send(eventName:string. data:string)`  
-  Triggers the event `eventName` and sends the string `data` to the subscribers (if you want to transfer object use `JSON.stringify` and `JSON.parse`)  
-  `{target}` can either be `controller`,`display` or `server` whoever you want to send the message to.
+- `hackerDS.on(eventName:string, handler:function`  
+  Works the same as the client does.
+  
+- `hackerDS.{target}.send(eventName:string, data:string)`  
+  Works as the client does, except there is no `server` target.

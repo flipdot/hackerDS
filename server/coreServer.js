@@ -27,8 +27,8 @@ function CoreServer(socketServer, appsManager){
     socket.on('clientMessage', function (data) {
       if(data.typ === "server"){
         var app = appsManager.getApp(data.appname);
-        if(app && app.server && app.server.methods){
-          var method = app.server.methods[data.msg.name];
+        if(app){
+          var method = app.methods[data.msg.name];
           if(method) method(data.msg.data, function (name, data) {
             socket.emit(name, data);
           });

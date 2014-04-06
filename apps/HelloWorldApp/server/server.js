@@ -11,9 +11,7 @@ module.exports = function Server(hackerDS) {
     }, 1000);
   };
   
-  mySelf.methods = {
-    "serverMsg": function (msg) {
-      console.log(msg);
-    }
-  };
+  hackerDS.on("serverMsg", function (msg) {
+    console.log(msg);
+  });
 };
