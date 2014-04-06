@@ -1,10 +1,12 @@
 var commonJsSrcFiles = [
   'apps/HackerDSCore/clientSrc/shared/js/jquery.min.js',
   'apps/HackerDSCore/clientSrc/shared/js/bootstrap.min.js',
-  'apps/HackerDSCore/clientSrc/shared/js/angular.min.js'
+  'apps/HackerDSCore/clientSrc/shared/js/angular.min.js',
+  'apps/HackerDSCore/clientSrc/shared/js/angular-route.min.js'
 ];
 
 var controllerJsSrcFiles = [
+  'apps/HackerDSCore/clientSrc/controller/js/app.js',
   'apps/HackerDSCore/clientSrc/controller/js/controllers.js',
 ];
 
@@ -13,7 +15,7 @@ var displayJsSrcFiles = [
 ];
 
 var appsLibs = [
-  'apps/HackerDSCore/clientSrc/shared/js/socket.io.js',
+  'apps/HackerDSCore/clientSrc/hackerDS/js/socket.io.js',
   'apps/HackerDSCore/clientSrc/hackerDS/js/hackerDS.js'
 ];
 
@@ -33,6 +35,9 @@ module.exports = function (grunt) {
           default: {
             files: [
               { src: ["apps/HackerDSCore/clientSrc/controller/html/index.html"], dest: "apps/HackerDSCore/client/controller/index.html" },
+              { src: ["apps/HackerDSCore/clientSrc/controller/html/appList.html"], dest: "apps/HackerDSCore/client/controller/appList.html" },
+              { src: ["apps/HackerDSCore/clientSrc/controller/html/appControlPanel.html"], dest: "apps/HackerDSCore/client/controller/appControlPanel.html" },
+              
               { src: ["apps/HackerDSCore/clientSrc/display/html/index.html"], dest: "apps/HackerDSCore/client/display/index.html" },
             ]
           }

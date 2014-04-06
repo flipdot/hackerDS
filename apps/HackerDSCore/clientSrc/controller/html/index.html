@@ -1,22 +1,11 @@
-<html ng-app>
+<!doctype html>
+<html ng-app="controllerApp">
     <head>
         <title>hackerDS Controller</title>
         <link href="../shared/css/style.css" type="text/css" rel="stylesheet" />
     </head>
-    <body ng-controller="ControllerCtrl">
-        <div class="container">
-            <h1>hackerDS control panel</h1>
-            <div class="row">
-              <div class="col-md-1" ng-repeat="app in apps">
-                <div>
-                  <a href="#">
-                    <img ng-src="/apps/{{app.name}}/icon" />
-                    <span>{{app.name}}</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-        </div>
+    <body>
+        <div ng-view class="view-frame"></div>
         
         <script type="text/javascript" src="../shared/js/common.js"></script>
         <script type="text/javascript" src="/hackerDS/js/hackerDS.js"></script>
