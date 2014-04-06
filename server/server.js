@@ -29,11 +29,6 @@ appsManager.loadApps().then(function () {
       "/apps/"+dsApp.name,
       express.static(__dirname+"/../apps/"+dsApp.name+"/client")
     );
-    
-    app.use(
-      "/apps/"+dsApp.name+"/shared",
-      express.static(__dirname+"/../apps/"+dsApp.name+"/client/shared")
-    );
   });
   
   app.get("/apps", function(req, res){
