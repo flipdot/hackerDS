@@ -19,7 +19,7 @@ Every app must have the following structure to be loaded into the hackerDS syste
       |- icon.png
 
 **`/icon.png`**  
-The icon for the app at size 150px x 150px in PNG format
+The icon for the app at size 150x150px in PNG format
 
 **`/client`**  
 The content of this folder is published at `/apps/{YourAppName}`, for example the content of a folder `shared` is available at `/apps/{YourAppName}/shared`.
