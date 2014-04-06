@@ -7,10 +7,20 @@ function AppManager(appsFolder){
   
   mySelf.apps = [];
   
+  var sendToClient;
+  mySelf.setupClientPipeline = function (sendToClientFunction) {
+    sendToClient = sendToClientFunction;
+  };
+  
+  function fromAppServerToClient(req){
+    sendToClient(req);
+  }
+  
   mySelf.loadApps = function () {
     return fsLib.readDirs(appsFolder).then(function(dirs){
       dirs.map(function(dir){
-        mySelf.apps.push(new App(dir));
+        var app = new App(dir, fromAppServerToClient);
+        mySelf.apps.push(app);
       });
     });
   }
@@ -25,16 +35,28 @@ function AppManager(appsFolder){
   };
 };
 
-function App(folder){
+function App(folder, serverToClient){
   var self = this;
 
   self.folder = folder;
   self.name = path.basename(self.folder);
   
+  function sendServerToClient(typ, name, data) {
+    serverToClient({
+      appname: self.name,
+      typ: typ,
+      name: name,
+      data: data
+    });
+  }
+  
+  self.display = { send: function(name, data) { sendServerToClient("display", name, data) } };
+  self.controller = { send: function(name, data) { sendServerToClient("controller", name, data) } };
+  
   var serverJs = path.join(self.folder, "/server/server.js");
   try {
     var serverClass = require(serverJs);
-    self.server = new serverClass();
+    self.server = new serverClass(self);
     
     if(self.server.init) self.server.init();
   } catch(err){

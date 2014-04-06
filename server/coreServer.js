@@ -1,6 +1,22 @@
 function CoreServer(socketServer, appsManager){
   var self = this;
   
+  function sendToAppClient(appname, typ, name, data){
+    var room = appname+"."+typ;
+    var msg = {
+      name: name,
+      data: data
+    }
+    socketServer.sockets.in(room).emit('message', msg);
+  }
+  
+  appsManager.setupClientPipeline(function (req) {
+    var appname = req.appname;
+    var typ = req.typ;
+    
+    sendToAppClient(appname, typ, req.name, req.data);
+  });
+  
   socketServer.on('connection', function (socket) {
     socket.on('registerClient', function (data) {
       var client = data.client;
@@ -20,8 +36,7 @@ function CoreServer(socketServer, appsManager){
         return;
       }
       
-      var room = data.appname+"."+data.typ;
-      socket.broadcast.to(room).emit("message", data.msg);
+      sendToAppClient(data.appname, data.typ, data.msg.name, data.msg.data);
     });
   });
 }

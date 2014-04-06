@@ -5,5 +5,5 @@ function sendToDisplay(){
 
 function sendToServer(){
   var text = document.getElementById("msg").value;
-  hackerDS.send("serverMsg", text);
+  hackerDS.server.send("serverMsg", text);
 }

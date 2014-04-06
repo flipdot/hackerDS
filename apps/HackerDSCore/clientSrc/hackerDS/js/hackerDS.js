@@ -38,7 +38,7 @@
 
       self.controller = { send: function(name, data) { sendMessageToApp(client.name, "controller", name, data); } };
       self.display = { send: function (name, data) { sendMessageToApp(client.name, "display", name, data);} };
-      self.send = function (name, data) { sendMessageToApp(client.name, "server", name, data); };
+      self.server =  { send: function (name, data) { sendMessageToApp(client.name, "server", name, data); } };
     }
     
     function registerClient(){
