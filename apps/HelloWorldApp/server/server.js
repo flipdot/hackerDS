@@ -1,4 +1,4 @@
-module.exports = function Server(app) {
+module.exports = function Server(hackerDS) {
   var mySelf = this;
   
   mySelf.init = function(){
@@ -6,7 +6,7 @@ module.exports = function Server(app) {
     
     var i = 1;
     setInterval(function() {
-      app.display.send("demoToDisplayMessage", "hello from the server! "+i);
+      hackerDS.display.send("demoToDisplayMessage", "hello from the server! "+i);
       i++;
     }, 1000);
   };
