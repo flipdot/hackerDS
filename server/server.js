@@ -40,6 +40,10 @@ appsManager.loadApps().then(function () {
     res.send(apps);
   });
 
+  app.get('/', function(req, res) {
+    res.send('<a href="/display">Display</a><br><a href="/controller">Controller</a>');
+  });
+
   httpServer.listen(3000);
   var socketServer = socketIo.listen(httpServer);
   socketServer.set('log level', 0);
