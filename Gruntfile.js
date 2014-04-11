@@ -85,5 +85,5 @@ module.exports = function (grunt) {
     
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('build', buildTasks);
-    grunt.registerTask('release', ['less', 'uglify']);
+    grunt.registerTask('release', ['less', 'uglify', 'copy']);
 };
