@@ -9,5 +9,11 @@
         </a>
       </div>
     </div>
+    <div ng-if="apps.length < 1">
+       <p>No Apps loaded</p>
+       <button
+          style="height: 80px; width: 200px"
+          ng-click="reload()">Reload</button>
+    </div>
   </div>
 </div>
