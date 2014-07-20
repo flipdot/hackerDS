@@ -29,9 +29,15 @@ function CoreServer(socketServer, appsManager){
         var app = appsManager.getApp(data.appname);
         if(app){
           var method = app.methods[data.msg.name];
-          if(method) method(data.msg.data, function (name, data) {
-            socket.emit(name, data);
-          });
+          if(method) {
+            try {
+              method(data.msg.data, function (name, data) {
+                socket.emit(name, data);
+              });
+            } catch(err) {
+              console.error(err);
+            }
+          }
         }
         return;
       }
