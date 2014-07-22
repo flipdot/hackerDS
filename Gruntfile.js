@@ -37,9 +37,10 @@ module.exports = function (grunt) {
               { src: ["apps/HackerDSCore/clientSrc/controller/html/index.html"], dest: "apps/HackerDSCore/client/controller/index.html" },
               { src: ["apps/HackerDSCore/clientSrc/controller/html/appList.html"], dest: "apps/HackerDSCore/client/controller/appList.html" },
               { src: ["apps/HackerDSCore/clientSrc/controller/html/appControlPanel.html"], dest: "apps/HackerDSCore/client/controller/appControlPanel.html" },
-              
+
               { src: ["apps/HackerDSCore/clientSrc/display/html/index.html"], dest: "apps/HackerDSCore/client/display/index.html" },
               { src: ["apps/HackerDSCore/clientSrc/display/html/home.html"], dest: "apps/HackerDSCore/client/display/home.html" },
+              { src: ["apps/HackerDSCore/clientSrc/display/img/flipdot_logo.png"], dest: "apps/HackerDSCore/client/display/img/flipdot_logo.png" },
             ]
           }
         },
@@ -76,13 +77,13 @@ module.exports = function (grunt) {
             }
         }
     });
-    
+
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    
+
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('build', buildTasks);
     grunt.registerTask('release', ['less', 'uglify', 'copy']);
