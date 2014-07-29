@@ -2,10 +2,12 @@
   <h1>hackerDS control panel</h1>
   <div class="row">
     <div class="col-md-1" ng-repeat="app in apps">
-      <div>
+      <div class="appContainer">
         <a href="" ng-click="switchToApp(app)">
-          <img ng-src="/apps/{{app.name}}/icon" />
-          <span>{{app.name}}</span>
+          <div>
+            <img ng-src="/apps/{{app.name}}/icon" />
+            <span class="appName">{{app.name}}</span>
+          </div>
         </a>
       </div>
     </div>
