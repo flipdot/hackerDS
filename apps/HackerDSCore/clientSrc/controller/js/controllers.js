@@ -1,17 +1,20 @@
 var controllerControllers = angular.module('controllerControllers', [])
 
+var colorThief = new ColorThief();
 function updateAppsBackground(){
-  var colorThief = new ColorThief();
-
   $('.appContainer').each(function(i, appContainer){
     var img = $(appContainer).find('a > div > img');
     img.on('load', function(){
       var color = colorThief.getColor(img[0]);
-      var inverted = color.map(function(c){return c ^ 0xff});
+      var palette = colorThief.getPalette(img[0]);
+      var fontColor = color.map(function(c){return c - 40});
+
+      color = color.map(function(c){return c + 70});
+
       $(appContainer).css('background', 'rgb('+color[0]+','+color[1]+','+color[2]+')');
       $(appContainer)
         .find('a > div > span')
-        .css('color', 'rgb('+inverted[0]+','+inverted[1]+','+inverted[2]+')');
+        .css('color', 'rgb('+fontColor[0]+','+fontColor[1]+','+fontColor[2]+')');
     })
   })
 }
