@@ -2,6 +2,13 @@
 @import "bootstrap/variables.less";
 @import "bootstrap/mixins.less";
 
+* {
+  cursor: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 .fullscreenBody {
   margin: 0;
   padding: 0;
@@ -16,6 +23,10 @@
   position: absolute;
   width: 100%;
   height: 100%;
+}
+
+a:link {
+  text-decoration: none;
 }
 
 /* Controller */
