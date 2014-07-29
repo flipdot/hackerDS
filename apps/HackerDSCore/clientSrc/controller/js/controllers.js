@@ -7,7 +7,11 @@ function updateAppsBackground(){
     var img = $(appContainer).find('a > div > img');
     img.on('load', function(){
       var color = colorThief.getColor(img[0]);
-      $(appContainer).css('background', 'rgb('+color[0]+','+color[1]+','+color[2]+')')
+      var inverted = color.map(function(c){return c ^ 0xff});
+      $(appContainer).css('background', 'rgb('+color[0]+','+color[1]+','+color[2]+')');
+      $(appContainer)
+        .find('a > div > span')
+        .css('color', 'rgb('+inverted[0]+','+inverted[1]+','+inverted[2]+')');
     })
   })
 }
