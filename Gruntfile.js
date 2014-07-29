@@ -6,6 +6,7 @@ var commonJsSrcFiles = [
 ];
 
 var controllerJsSrcFiles = [
+  'apps/HackerDSCore/clientSrc/controller/js/color-thief.min.js',
   'apps/HackerDSCore/clientSrc/controller/js/app.js',
   'apps/HackerDSCore/clientSrc/controller/js/controllers.js',
 ];
