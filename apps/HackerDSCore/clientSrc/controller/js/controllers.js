@@ -6,7 +6,6 @@ function updateAppsBackground(){
     var img = $(appContainer).find('a > div > img');
     img.on('load', function(){
       var color = colorThief.getColor(img[0]);
-      var palette = colorThief.getPalette(img[0]);
       var fontColor = color.map(function(c){return c - 40});
 
       color = color.map(function(c){return c + 70});
