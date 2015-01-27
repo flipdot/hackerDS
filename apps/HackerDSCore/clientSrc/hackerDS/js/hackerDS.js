@@ -31,7 +31,7 @@
     
     var client = {};
     var pathname = window.location.pathname;
-    var appNameResult = pathname.match(/\/apps\/(.+{1,})\/(\w+)/);
+    var appNameResult = pathname.match(/\/apps\/(.+)\/(\w+)/);
     if(appNameResult){
       client.name = appNameResult[1];
       client.typ = appNameResult[2];
