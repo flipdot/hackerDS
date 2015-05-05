@@ -41,6 +41,7 @@ module.exports = function (grunt) {
 
               { src: ["apps/HackerDSCore/clientSrc/display/html/index.html"], dest: "apps/HackerDSCore/client/display/index.html" },
               { src: ["apps/HackerDSCore/clientSrc/display/html/home.html"], dest: "apps/HackerDSCore/client/display/home.html" },
+              { src: ["apps/HackerDSCore/clientSrc/display/html/together.html"], dest: "apps/HackerDSCore/client/display/together.html" },
               { src: ["apps/HackerDSCore/clientSrc/display/img/flipdot_logo.png"], dest: "apps/HackerDSCore/client/display/img/flipdot_logo.png" },
             ]
           }

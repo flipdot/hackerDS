@@ -3,15 +3,27 @@
 
     <style>
 
+    * {
+      overflow: collapse;
+    }
+
     body {
       font-family: Sans;
       zoom: 2;
+
     }
 
     .left {
       float: right;
       right: 0;
       top: 0;
+    }
+
+    #togetherframe {
+      width: 95%;
+      border: none;
+      overflow: hidden;
+      height: 400px;
     }
 
     </style>
@@ -23,5 +35,7 @@
     <p>Willkommen beim HackerDualScreen Projekt</p>
     <p>Starte, indem du eine App auf dem Touch-Screen an der Wand neben der Tür auswählst :)</p>
     <p>------------------------------&gt;</p>
+
+    <iframe id="togetherframe" src="together.html"></iframe>
   </body>
 </html>
