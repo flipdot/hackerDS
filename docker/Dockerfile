@@ -5,7 +5,7 @@ MAINTAINER Daniel Huhn (daniel@danielhuhn.de)
 
 # Update and install wget
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q supervisor
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q supervisor git
 
 RUN npm install -g grunt-cli
 
