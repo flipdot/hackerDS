@@ -44,7 +44,7 @@ RUN cd /app/hackerDS/apps && \
 
 # heaterControl
 RUN cd /app/hackerDS/apps && \
-    git https://github.com/flipdot/hackerDSHeaterControl.git && \
+    git clone https://github.com/flipdot/hackerDSHeaterControl.git && \
     cd hackerDSHeaterControl && \
     npm install
 
