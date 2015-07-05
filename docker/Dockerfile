@@ -1,4 +1,4 @@
-FROM node # x64
+FROM node
 #FROM hypriot/rpi-node:0.10.36
 
 MAINTAINER Daniel Huhn (daniel@danielhuhn.de)
