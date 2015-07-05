@@ -1,5 +1,5 @@
 FROM node # x64
-#FROM hypriot/rpi-node:0.10.36 # Raspberrry-PI (ARMv6)
+#FROM hypriot/rpi-node:0.10.36
 
 MAINTAINER Daniel Huhn (daniel@danielhuhn.de)
 
