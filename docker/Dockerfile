@@ -38,8 +38,15 @@ RUN cd /app/hackerDS/apps && \
     cd HutschienenController && \
     npm install
 
+# power consumition
 RUN cd /app/hackerDS/apps && \
     git clone https://github.com/flipdot/flipdot-power-consumption.git
+
+# heaterControl
+RUN cd /app/hackerDS/apps && \
+    git https://github.com/flipdot/hackerDSHeaterControl.git && \
+    cd hackerDSHeaterControl && \
+    npm install
 
 RUN mkdir -p /var/log/supervisor
 ADD conf/supervisor.conf /etc/supervisor/conf.d/supervisord.conf
